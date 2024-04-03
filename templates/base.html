@@ -26,14 +26,20 @@
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{% url 'list-news' %}">news list</a></li>
                 <hr>
-                {% for category in categories %}
-                    <li><a class="dropdown-item" href="{% url 'list-news' %}?category={{ category.id }}">{{ category.category_name }}</a></li>
-                {% endfor %}
+                    <li><a class="dropdown-item" href="{% url 'list-news' %}?category=1">Sport</a></li>
+                    <li><a class="dropdown-item" href="{% url 'list-news' %}?category=2">Politic</a></li>
+                    <li><a class="dropdown-item" href="{% url 'list-news' %}?category=3">Uzbekistan</a></li>
+                    <li><a class="dropdown-item" href="{% url 'list-news' %}?category=4">IT</a></li>
+                    <li><a class="dropdown-item" href="{% url 'list-news' %}?category=5">Jahon</a></li>
                   <hr>
                 <li><a class="dropdown-item" href="{% url 'add-news' %}">add news</a></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li>
+            <form class="d-flex ms-5" role="search" method="get" action="{% url 'list-news' %}">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
           </ul>
                {% if user.is_authenticated %}
             <div class="dropdown">
@@ -55,10 +61,6 @@
                 <a href="{% url 'login_page' %}" class="btn btn-info text-white">Login</a>
                 <a href="{% url 'register_page' %}" class="btn btn-info text-white ms-2">Register</a>
             {% endif %}
-<!--          <form class="d-flex" role="search">-->
-<!--            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--            <button class="btn btn-outline-success" type="submit">Search</button>-->
-<!--          </form>-->
         </div>
       </div>
     </nav>
