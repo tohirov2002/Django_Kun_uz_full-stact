@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Delete news
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center flex-column">
+        <h2 class="text-center mt-5 text-info">Yangilik o'chirish</h2>
+        <h4 class="text-center mt-5 text-danger">Malumotni haqiqatdan uchirmoqchimisz</h4>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form|crispy }}
+            <input class="btn btn-danger mt-4" type="submit" value="Delete">
+        </form>
+        <a class="btn btn-info mt-2 text-white" type="submit" href="{% url 'list-news' %}">Cansel</a>
+    </div>
+{% endblock %}

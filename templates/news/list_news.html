@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    All news
+{% endblock %}
+
+{% block content %}
+    <div class="gap-5 mt-5">
+        <h2 class="text-center mt-5 text-info">Barcha yangiliklar bizda</h2>
+        <div class="row mt-5">
+            {% for news in news_list %}
+                <div class="col-md-6">
+                    <div class="card">
+                          <img class="card-img-top" src="{% static news.news_image %}" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ news.news_title|safe }}</h5>
+                            <p class="card-text">{{ news.news_description|safe }}</p>
+                            <p class="card-text">{{ news.news_content|safe }}</p>
+                            <div>
+                                <a href="{% url 'edit-news' news.pk %}" class="btn btn-primary">edit news</a>
+                                <a href="{% url 'show-news' news.pk %}" class="btn btn-success">too see</a>
+                                <a href="{% url 'delete-news' news.pk %}" class="btn btn-danger">Delete</a>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

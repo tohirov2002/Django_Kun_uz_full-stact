@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Detail news
+{% endblock %}
+
+{% block content %}
+    <div class="gap-5 mt-5">
+        <h2 class="text-center mt-5 text-info">Yangiliklar</h2>
+                    <div class="card">
+                          <img class="card-img-top" src="{% static news.news_image %}" alt="Card image cap">
+                          <div class="card-body">
+                            <h5 class="card-title">{{ news.news_title|safe }}</h5>
+                            <p class="card-text">{{ news.news_description|safe }}</p>
+                            <p class="card-text">{{ news.news_content|safe }}</p>
+                            <a href="{% url 'list-news' %}" class="btn btn-primary">Orqaga</a>
+                          </div>
+        </div>
+    </div>
+
+{% endblock %}
