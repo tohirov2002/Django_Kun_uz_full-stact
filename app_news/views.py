@@ -18,7 +18,6 @@ class NewsCreateView(LoginRequiredMixin,CreateView):
         return super().form_valid(form)
 
 
-
 class ListNewView(ListView):
     model = News
     template_name = 'news/list_news.html'
@@ -28,13 +27,16 @@ class ListNewView(ListView):
 
     def get_queryset(self):
         if 'keyword' in self.request.GET:
-            return (
+            queryset = (
                 News.objects.filter(news_title__icontains=self.request.GET['keyword']) |
                 News.objects.filter(news_description__icontains=self.request.GET['keyword']) |
                 News.objects.filter(news_content__icontains=self.request.GET['keyword'])
             )
-        return News.objects.all()
-
+        else:
+            queryset = News.objects.all()
+        if 'category' in self.request.GET:
+            queryset = queryset.filter(news_category=self.request.GET['category'])
+        return queryset
 
 class DetailNewView(DetailView):
     model = News
